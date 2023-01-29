@@ -66,6 +66,7 @@
     <Build Include="dbo\StoredProcedure\spArticle_GetAll.sql" />
     <Build Include="dbo\StoredProcedure\spArticle_GetByArticleID.sql" />
     <Build Include="dbo\StoredProcedure\spArticle_Insert.sql" />
+    <Build Include="dbo\StoredProcedure\spArticle_GetByTitleAndLastModified.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ArticleDB.refactorlog" />

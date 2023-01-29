@@ -5,6 +5,8 @@ namespace Api.Context
 {
     public interface IArticleRepository
     {
-        public Task<IEnumerable<Article>> GetArticles();
+        public Task<IEnumerable<Article>> GetAllArticles();
+        public Task<IEnumerable<Article>> GetArticleByArticleId(string articleId);
+        public Task<IEnumerable<Article>> GetArticleByTitleAndLastModified(string title, DateTime? lastModifiedFrom, DateTime? lastModifiedTo);
     }
 }

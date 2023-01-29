@@ -25,7 +25,7 @@ namespace Api.Controllers
         {
             try
             {
-                var articles = await _articleRepo.GetArticles();
+                var articles = await _articleRepo.GetAllArticles();
                 return Ok(articles);
             }
             catch (Exception ex)
@@ -35,10 +35,46 @@ namespace Api.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Article>> GetArticle(long id)
+        [HttpGet("{articleId}")]
+        public async Task<ActionResult<Article>> GetArticleByArticleId(string articleId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var articles = await _articleRepo.GetArticleByArticleId(articleId);
+                if (articles.Count() == 0)
+                {
+                    return NotFound();
+                }
+                return Ok(articles);
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("byTitleAndLastModified")]
+        public async Task<ActionResult<Article>> GetArticleByTitle(string title, DateTime? lastModifiedFrom, DateTime? lastModifiedTo)
+        {
+            try
+            {
+                var articles = await _articleRepo.GetArticleByTitleAndLastModified(
+                    title,
+                    lastModifiedFrom,
+                    lastModifiedTo
+                );
+                if (articles.Count() == 0)
+                {
+                    return NotFound();
+                }
+                return Ok(articles);
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
