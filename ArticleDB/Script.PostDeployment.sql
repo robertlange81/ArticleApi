@@ -23,8 +23,13 @@ begin
     ),
     (
         '345',
-        'FFF00',
+        'FFFF00',
         0
+    ),
+    (
+        '567x',
+        '0000FF',
+        1
     );
 end
 
@@ -65,6 +70,18 @@ begin
         'DE',
         'deutsche Taschenlampe',
         'Beschreibung deutsche Blumentopf'
+    ),
+    (    
+        '567x',
+        'DE',
+        'blauer Sessel deluxe',
+        'Beschreibung für deutschen Sessel'
+    ),
+    (    
+        '567x',
+        'FR',
+        'fauteuil bleu',
+        'Description du fauteuil français'
     );
 end
 

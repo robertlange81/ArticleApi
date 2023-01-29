@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spArticle_GetByArticleID]
-	@ArticleId NCHAR(100)
+	@ArticleId NVARCHAR(100)
 AS
 begin
 	select

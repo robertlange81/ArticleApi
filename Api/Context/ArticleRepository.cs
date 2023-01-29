@@ -71,6 +71,7 @@ namespace Api.Context
         {
             using (var connection = _context.CreateConnection())
             {
+                title = title.Trim();
                 var articleDictionary = new Dictionary<long, Article>();
                 var articles = await connection.QueryAsync<Article, Translation, Article>(
                     "dbo.spArticle_GetByTitleAndLastModified",
