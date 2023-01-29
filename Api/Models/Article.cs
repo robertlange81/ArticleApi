@@ -1,9 +1,21 @@
-﻿namespace TodoApi.Models
+﻿
+using Microsoft.IdentityModel.Tokens;
+using System;
+
+namespace Api.Models
 {
     public class Article
     {
         public long Id { get; set; }
-        public string? Name { get; set; }
-        public bool IsComplete { get; }
+        public string ArticleId { get; set; }
+        public string? Color { get; set; }
+        public bool isBulky { get; set; }
+        public bool IsApproved { 
+            get {
+                int CountryCount = Enum.GetNames(typeof(CountryCode)).Length;
+                return CountryCount == Translations.Count();
+            }
+        }
+        public Dictionary<string, Translation> Translations { get; set; }
     }
 }
