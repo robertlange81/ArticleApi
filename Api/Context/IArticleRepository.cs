@@ -5,8 +5,12 @@ namespace Api.Context
 {
     public interface IArticleRepository
     {
-        public Task<IEnumerable<Article>> GetAllArticles();
-        public Task<IEnumerable<Article>> GetArticleByArticleId(string articleId);
-        public Task<IEnumerable<Article>> GetArticleByTitleAndLastModified(string title, DateTime? lastModifiedFrom, DateTime? lastModifiedTo);
+        Task<IEnumerable<Article>> GetAllArticles();
+        Task<IEnumerable<Article>> GetArticleByArticleId(string articleId);
+        Task<IEnumerable<Article>> GetArticleByTitleAndLastModified(string title, DateTime? lastModifiedFrom, DateTime? lastModifiedTo);
+        Task<bool> InsertArticle(Article article);
+        Task<bool> InsertStopword(string term);
+        Task<IEnumerable<string>> GetAllStopwords();
+        Task<bool> InsertTranslation(Translation translation);
     }
 }

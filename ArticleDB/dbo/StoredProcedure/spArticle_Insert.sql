@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spArticle_Insert]
-	@ArticleId NCHAR(100),
+	@ArticleId NVARCHAR(100),
 	@Color NCHAR(6),
 	@IsBulky bit
 AS

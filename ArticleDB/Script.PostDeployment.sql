@@ -101,5 +101,14 @@ begin
     ),
     (
         'Rock & Roll'
+    ),
+    (
+        ','
+    ),
+    (
+        'Delete'
+    ),
+    (
+        'Drop'
     );
 end

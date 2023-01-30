@@ -98,5 +98,67 @@ namespace Api.Context
                 return articles.Distinct().ToList();
             }
         }
+
+        public async Task<bool> InsertArticle(Article article)
+        {
+            // TODO prevent dulicates / catch exceptions due to already existing primary key
+            using (var connection = _context.CreateConnection())
+            {
+                int success = await connection.ExecuteAsync(
+                    "dbo.[spArticle_Insert]",
+                    commandType: CommandType.StoredProcedure,
+                    param: new
+                    {
+                        article.ArticleId,
+                        article.Color,
+                        article.isBulky
+                    }
+                );
+                return success > 0;
+            }
+        }
+
+        public async Task<IEnumerable<string>> GetAllStopwords()
+        {
+            using (var connection = _context.CreateConnection())
+            {
+                return await connection.QueryAsync<string>(
+                    $"Select term from dbo.[ArticleStopword];"
+                );
+            }
+        }
+
+        public async Task<bool> InsertStopword(string term)
+        {
+            // TODO prevent dulicates / catch exceptions due to already existing primary key
+            using (var connection = _context.CreateConnection())
+            {
+                int success = await connection.ExecuteAsync(
+                    // TODO: SQL Escape to prevent injection
+                    $"Insert into dbo.[ArticleStopword] ([Term]) values ('" + term + "');"
+                );
+                return success > 0;
+            }
+        }
+
+        public async Task<bool> InsertTranslation(Translation translation)
+        {
+            // TODO prevent dulicates / catch exceptions due to already existing primary key
+            using (var connection = _context.CreateConnection())
+            {
+                int success = await connection.ExecuteAsync(
+                    "dbo.[spTranslation_Insert]",
+                    commandType: CommandType.StoredProcedure,
+                    param: new
+                    {
+                        translation.ArticleId,
+                        translation.CountryCode,
+                        translation.Title,
+                        translation.Description
+                    }
+                );
+                return success > 0;
+            }
+        }
     }
 }
